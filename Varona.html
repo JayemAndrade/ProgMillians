@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Interactive Quiz</title>                                                                                                                    
+    <style>
+        .quiz-container {
+            text-align: center;
+            margin-top: 50px;
+        }
+
+        .quiz-button {
+            padding: 10px 20px;
+            margin: 5px;
+            cursor: pointer;
+            background-color: gray;
+            color: white;
+            border: none;
+            font-size: 16px;
+        }
+
+        .quiz-button:hover {
+            background-color: blue;
+        }
+    </style>
+</head>
+<body>
+
+    <div class="quiz-container">
+        <h1>HTML Quiz</h1>
+        <p id="question">What does HTML stand for?</p>
+
+        <button class="quiz-button" onclick="checkAnswer(false)">A. Hyperlink and Text Markup Language</button>
+        <button class="quiz-button" onclick="checkAnswer(false)">B. Home Tool Markup Language</button>
+        <button class="quiz-button" onclick="checkAnswer(true)">C. HyperText Markup Language</button>
+        <button class="quiz-button" onclick="checkAnswer(false)">D. High Tech Markup Language</button>
+
+        <p id="result"></p>
+        <p id="scoreDisplay">Score: 0</p>
+
+        <a href="2ND Part.html" target="_self">Next Question</a>
+    </div>
+
+    <script>
+        // Retrieve score from localStorage or start at 0
+        let score = localStorage.getItem("quizScore") ? parseInt(localStorage.getItem("quizScore")) : 0;
+        document.getElementById("scoreDisplay").innerText = "Score: " + score;
+
+        function checkAnswer(isCorrect) {
+            if (isCorrect) {
+                document.getElementById("result").innerHTML = "✅ Correct! HTML stands for HyperText Markup Language.";
+                score++;
+            } else {
+                document.getElementById("result").innerHTML = "❌ Incorrect. Try again!";
+            }
+            document.getElementById("scoreDisplay").innerText = "Score: " + score;
+            
+            // Store score in localStorage for next page
+            localStorage.setItem("quizScore", score);
+        }
+    </script>
+
+</body>
+</html>
